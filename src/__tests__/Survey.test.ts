@@ -21,10 +21,11 @@ describe("Surveys", () => {
   });
 
   it("Should be able to get all surveys", async () => {
-    await request(app).post("/surveys").send({
-      title: "Title Example 2",
-      description: "Description Example2",
-    });
+    await request(app).post("/surveys")
+      .send({
+        title: "Title Example 2",
+        description: "Description Example2",
+      });
 
     const response = await request(app).get("/surveys");
 
