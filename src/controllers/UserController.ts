@@ -45,6 +45,31 @@ class UserController {
     return response.status(201).json(user);
 
   }
+
+  async show(request: Request, response: Response) {
+    const usersRepository = getCustomRepository(UserRepository);
+
+    const allListUsers = await usersRepository.find();
+
+    return response.json({ users: allListUsers });
+  }
+
+  async execute(request: Request, response: Response) {
+    const { name } = request.params;
+
+    const userRepository = getCustomRepository(UserRepository);
+
+    const oneUser = await userRepository.findOne({
+      name
+    })
+
+    if (!oneUser) {
+      throw new AppError("Survey User does not exist!");
+
+    }
+
+    return response.json({ oneUser });
+  }
 }
 
 export { UserController };

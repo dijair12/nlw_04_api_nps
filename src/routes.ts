@@ -17,9 +17,12 @@ const answersController = new AnswerController();
 const npsController = new NpsController();
 
 router.post("/users", userController.create);
+router.get("/users", userController.show);
+router.get("/user/:name", userController.execute);
 
 router.post("/surveys", surveysController.create);
 router.get("/surveys", surveysController.show);
+router.get("/survey/:survey_id", surveysController.execute);
 
 router.post("/sendMail", sendMailController.execute);
 
